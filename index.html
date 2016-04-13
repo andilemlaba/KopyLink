@@ -22,7 +22,7 @@
 
     <div class="container">
 
-        <form class="form-signin">
+        <form class="form-signin" method="get" id="download" action="getvideo.php">
           <h2 class="form-signin-heading " align="center">Kopy Link</h2>
           <label for="inputEmail" class="sr-only"></label>
           <input type="text" id="inputLink" class="form-control" placeholder="Paste your video link here!" required autofocus>
@@ -35,6 +35,7 @@
           <button class="btn btn-lg btn-primary btn-block" type="submit">Download</button>
         </form>
 
+        <?php include_once('config.php'); ?>
       </div> <!-- /container -->
 
 
