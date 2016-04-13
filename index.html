@@ -25,14 +25,14 @@
         <form class="form-signin" method="get" id="download" action="getvideo.php">
           <h2 class="form-signin-heading " align="center">Kopy Link</h2>
           <label for="inputEmail" class="sr-only"></label>
-          <input type="text" id="inputLink" class="form-control" placeholder="Paste your video link here!" required autofocus>
+          <input class="form-control" type="text" name="videoid" id="videoid" placeholder="Paste your video link here!" required autofocus>
           <div class="radio" align="center">
             <label><input type="radio" name="optradio">Mp3</label>  &bull;
             <label><input type="radio" name="optradio">Mp4</label>  &bull;
             <label><input type="radio" name="optradio">Wav</label>  &bull;
             <label><input type="radio" name="optradio">3gp</label>
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Download</button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" name="type" id="type" value="Download">Download</button>
         </form>
 
         <?php include_once('config.php'); ?>
