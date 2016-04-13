@@ -12,7 +12,7 @@
 
   /**********|| features ||***************/
   $config['feature']['browserExtensions']=true; // show links for install browser extensions? true or false
-  
+
   /**********|| Multiple IPs ||***************/
   # You can enable this option if you are having problems with youtube IP limit / IP ban.
   # This option will work only if the IP you add are available for the server.
@@ -20,7 +20,7 @@
   # This should work only if you have a dedicated server...
   #
   #
-  # Example of adding additional IPs to Ubuntu server 14.04 LTS 
+  # Example of adding additional IPs to Ubuntu server 14.04 LTS
   # !!!! Be very careful, you may block yourself !!!!
   # !!!! If you are connecting to your server remotly by ssh. You would do this only if you know what you do !!!!
   # !!!! This is only an example with a specific dedicated server (ovh.net) !!!!
@@ -34,7 +34,7 @@
   # auto lo
   # iface lo inet loopback
   #
-  # # The Main server IP: 
+  # # The Main server IP:
   # auto eth0
   # iface eth0 inet static
   #     address 123.456.789.001
@@ -72,28 +72,28 @@
   # that means your new network configuration has errors...
   # So be very careful before applying your configuration.
   # Try it first on a local dev server before messing up with your pro server.
-  # 
-  # 
+  #
+  #
   $config['multipleIPs']=false; // enable multiple IPs support to bypass Youtube IP limit? true or false
-  $config['IPs'] = [
-	  //'xxx.xxx.xxx.xxx',
-	  //'xxx.xxx.xxx.xxx',
-	  //'xxx.xxx.xxx.xxx',
-	  //'xxx.xxx.xxx.xxx',
-	  //'xxx.xxx.xxx.xxx',
-	  // add as many ips as you want (they must be available in the server conf (ex: /etc/network/interfaces fro ubuntu/debian)
-  ];
-  
+  // $config['IPs'] = [
+	//   //'xxx.xxx.xxx.xxx',
+	//   //'xxx.xxx.xxx.xxx',
+	//   //'xxx.xxx.xxx.xxx',
+	//   //'xxx.xxx.xxx.xxx',
+	//   //'xxx.xxx.xxx.xxx',
+	//   // add as many ips as you want (they must be available in the server conf (ex: /etc/network/interfaces fro ubuntu/debian)
+  // ];
+
   /**********|| Other ||***************/
   // Set your default timezone
   // use this link: http://php.net/manual/en/timezones.php
-  date_default_timezone_set("Asia/Tehran");
-  
+  //date_default_timezone_set("Asia/Tehran");
+
   // Debug mode
   #$debug=true; // debug mode on
   $debug=false; // debug mode off
-  
-  
+
+
   /**********|| Don't edit below ||***************/
   include_once('curl.php');
 ?>

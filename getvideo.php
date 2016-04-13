@@ -14,14 +14,14 @@ function clean($string) {
    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 }
 
-function formatBytes($bytes, $precision = 2) { 
-    $units = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'); 
-    $bytes = max($bytes, 0); 
-    $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
-    $pow = min($pow, count($units) - 1); 
+function formatBytes($bytes, $precision = 2) {
+    $units = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+    $bytes = max($bytes, 0);
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+    $pow = min($pow, count($units) - 1);
     $bytes /= pow(1024, $pow);
-    return round($bytes, $precision) . '' . $units[$pow]; 
-} 
+    return round($bytes, $precision) . '' . $units[$pow];
+}
 function is_chrome(){
 	$agent=$_SERVER['HTTP_USER_AGENT'];
 	if( preg_match("/like\sGecko\)\sChrome\//", $agent) ){	// if user agent is google chrome
@@ -74,198 +74,157 @@ if(isset($_REQUEST['type'])) {
 if ($my_type == 'Download') {
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>Youtube Downloader</title>
-    <meta name="keywords" content="Video downloader, download youtube, video download, youtube video, youtube downloader, download youtube FLV, download youtube MP4, download youtube 3GP, php video downloader" />
+<!DOCTYPE html>
+<html>
+	<title>Home</title>
+	<head>
+		<meta charset="utf8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Video downloader, download youtube,
+    video download, youtube video, youtube downloader, download youtube FLV,
+    download youtube MP4, download youtube 3GP, php video downloader" />
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-	 <style type="text/css">
-      	body {
-	        padding-top: 40px;
-	        padding-bottom: 40px;
-	        background-color: #f5f5f5;
-	}
 
-	.download {
-	        max-width: 300px;
-	        padding: 19px 29px 29px;
-	        margin: 0 auto 20px;
-	        background-color: #fff;
-	        border: 1px solid #e5e5e5;
-	        -webkit-border-radius: 5px;
-	           -moz-border-radius: 5px;
-	                border-radius: 5px;
-	        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-	           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-	                box-shadow: 0 1px 2px rgba(0,0,0,.05);
-      }
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/core-css.css" rel="stylesheet">
+     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/form-css.css" rel="stylesheet">
 
-      .download .download-heading {
-      		text-align:center;
-        	margin-bottom: 10px;
-      }
-
-      .mime, .itag {
-      		width: 75px;
-		display: inline-block;
-      }
-
-      .itag {
-      		width: 15px;
-      }
-      
-      .size {
-      		width: 20px;
-      }
-
-      .userscript {
-        	float: right;
-       		margin-top: 5px
-      }
-	  
-	  #info {
-			padding: 0 0 0 130px;
-			position: relative;
-			height:100px;
-	  }
-	  
-	  #info img{
-			left: 0;
-			position: absolute;
-			top: 0;
-			width:120px;
-			height:90px
-	  }
-    </style>
+ 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	</head>
-<body>
-	<div class="download">
-	<h1 class="download-heading">Youtube Downloader Results</h1>
-<?php
-} // end of if for type=Download
 
-/* First get the video info page for this video id */
-//$my_video_info = 'http://www.youtube.com/get_video_info?&video_id='. $my_id;
-$my_video_info = 'http://www.youtube.com/get_video_info?&video_id='. $my_id.'&asv=3&el=detailpage&hl=en_US'; //video details fix *1
-$my_video_info = curlGet($my_video_info);
+  <body>
+      <?php
+      } // end of if for type=Download
 
-/* TODO: Check return from curl for status code */
+      /* First get the video info page for this video id */
+      //$my_video_info = 'http://www.youtube.com/get_video_info?&video_id='. $my_id;
+      $my_video_info = 'http://www.youtube.com/get_video_info?&video_id='. $my_id.'&asv=3&el=detailpage&hl=en_US'; //video details fix *1
+      $my_video_info = curlGet($my_video_info);
 
-$thumbnail_url = $title = $url_encoded_fmt_stream_map = $type = $url = '';
+      /* TODO: Check return from curl for status code */
 
-parse_str($my_video_info);
-if($status=='fail'){
-	echo '<p>Error in video ID</p>';
-	exit();
-}
-echo '<div id="info">';
-switch($config['ThumbnailImageMode'])
-{
-  case 2: echo '<a href="getimage.php?videoid='. $my_id .'&sz=hd" target="_blank"><img src="getimage.php?videoid='. $my_id .'" border="0" hspace="2" vspace="2"></a>'; break;
-  case 1: echo '<a href="getimage.php?videoid='. $my_id .'&sz=hd" target="_blank"><img src="'. $thumbnail_url .'" border="0" hspace="2" vspace="2"></a>'; break;
-  case 0:  default:  // nothing
-}
-echo '<p>'.$title.'</p>';
-echo '</div>';
+      $thumbnail_url = $title = $url_encoded_fmt_stream_map = $type = $url = '';
 
-$my_title = $title;
-$cleanedtitle = clean($title);
+      parse_str($my_video_info);
+      if($status=='fail'){
+      	echo '<p>Error in video ID</p>';
+      	exit();
+      }
+      echo '<div id="info">';
+      switch($config['ThumbnailImageMode'])
+      {
+        case 2: echo '<a href="getimage.php?videoid='. $my_id .'&sz=hd" target="_blank"><img src="getimage.php?videoid='. $my_id .'" border="0" hspace="2" vspace="2"></a>'; break;
+        case 1: echo '<a href="getimage.php?videoid='. $my_id .'&sz=hd" target="_blank"><img src="'. $thumbnail_url .'" border="0" hspace="2" vspace="2"></a>'; break;
+        case 0:  default:  // nothing
+      }
+      echo '<p>'.$title.'</p>';
+      echo '</div>';
 
-if(isset($url_encoded_fmt_stream_map)) {
-	/* Now get the url_encoded_fmt_stream_map, and explode on comma */
-	$my_formats_array = explode(',',$url_encoded_fmt_stream_map);
-	if($debug) {
-		if($config['multipleIPs'] === true) {
-			echo '<pre>Outgoing IP: ';
-			print_r($outgoing_ip);
-			echo '</pre>';
-		}
-		echo '<pre>';
-		print_r($my_formats_array);
-		echo '</pre>';
-	}
-} else {
-	echo '<p>No encoded format stream found.</p>';
-	echo '<p>Here is what we got from YouTube:</p>';
-	echo $my_video_info;
-}
-if (count($my_formats_array) == 0) {
-	echo '<p>No format stream map found - was the video id correct?</p>';
-	exit;
-}
+      $my_title = $title;
+      $cleanedtitle = clean($title);
 
-/* create an array of available download formats */
-$avail_formats[] = '';
-$i = 0;
-$ipbits = $ip = $itag = $sig = $quality = '';
-$expire = time(); 
+      if(isset($url_encoded_fmt_stream_map)) {
+      	/* Now get the url_encoded_fmt_stream_map, and explode on comma */
+      	$my_formats_array = explode(',',$url_encoded_fmt_stream_map);
+      	if($debug) {
+      		if($config['multipleIPs'] === true) {
+      			echo '<pre>Outgoing IP: ';
+      			print_r($outgoing_ip);
+      			echo '</pre>';
+      		}
+      		echo '<pre>';
+      		print_r($my_formats_array);
+      		echo '</pre>';
+      	}
+      } else {
+      	echo '<p>No encoded format stream found.</p>';
+      	echo '<p>Here is what we got from YouTube:</p>';
+      	echo $my_video_info;
+      }
+      if (count($my_formats_array) == 0) {
+      	echo '<p>No format stream map found - was the video id correct?</p>';
+      	exit;
+      }
 
-foreach($my_formats_array as $format) {
-	parse_str($format);
-	$avail_formats[$i]['itag'] = $itag;
-	$avail_formats[$i]['quality'] = $quality;
-	$type = explode(';',$type);
-	$avail_formats[$i]['type'] = $type[0];
-	$avail_formats[$i]['url'] = urldecode($url) . '&signature=' . $sig;
-	parse_str(urldecode($url));
-	$avail_formats[$i]['expires'] = date("G:i:s T", $expire);
-	$avail_formats[$i]['ipbits'] = $ipbits;
-	$avail_formats[$i]['ip'] = $ip;
-	$i++;
-}
+      /* create an array of available download formats */
+      $avail_formats[] = '';
+      $i = 0;
+      $ipbits = $ip = $itag = $sig = $quality = '';
+      $expire = time();
 
-if ($debug) {
-	echo '<p>These links will expire at '. $avail_formats[0]['expires'] .'</p>';
-	echo '<p>The server was at IP address '. $avail_formats[0]['ip'] .' which is an '. $avail_formats[0]['ipbits'] .' bit IP address. ';
-	echo 'Note that when 8 bit IP addresses are used, the download links may fail.</p>';
-}
-if ($my_type == 'Download') {
-	echo '<p align="center">List of available formats for download:</p>
-		<ul>';
+      foreach($my_formats_array as $format) {
+      	parse_str($format);
+      	$avail_formats[$i]['itag'] = $itag;
+      	$avail_formats[$i]['quality'] = $quality;
+      	$type = explode(';',$type);
+      	$avail_formats[$i]['type'] = $type[0];
+      	$avail_formats[$i]['url'] = urldecode($url) . '&signature=' . $sig;
+      	parse_str(urldecode($url));
+      	$avail_formats[$i]['expires'] = date("G:i:s T", $expire);
+      	$avail_formats[$i]['ipbits'] = $ipbits;
+      	$avail_formats[$i]['ip'] = $ip;
+      	$i++;
+      }
 
-	/* now that we have the array, print the options */
-	for ($i = 0; $i < count($avail_formats); $i++) {
-		echo '<li>';
-		echo '<span class="itag">' . $avail_formats[$i]['itag'] . '</span> ';
-		if($config['VideoLinkMode']=='direct'||$config['VideoLinkMode']=='both'){
-		$directlink = explode('.googlevideo.com/',$avail_formats[$i]['url']);
-		$directlink = 'http://redirector.googlevideo.com/' . $directlink[1] . '';
-		  echo '<a href="' . $directlink . '&title='.$cleanedtitle.'" class="mime">' . $avail_formats[$i]['type'] . '</a> ';
-		}else{
-		  echo '<span class="mime">' . $avail_formats[$i]['type'] . '</span> ';
-		echo '<small>(' .  $avail_formats[$i]['quality'];}
-		if($config['VideoLinkMode']=='proxy'||$config['VideoLinkMode']=='both')
-			echo ' / ' . '<a href="download.php?mime=' . $avail_formats[$i]['type'] .'&title='. urlencode($my_title) .'&token='.base64_encode($avail_formats[$i]['url']) . '" class="dl">download</a>';
-		echo ')</small> '.
-			'<small><span class="size">' . formatBytes(get_size($avail_formats[$i]['url'])) . '</span></small>'.
-		'</li>';
-	}
-	echo '</ul><small>Note that you initiate download either by clicking video format link or click "download" to use this server as proxy.</small>';
+      if ($debug) {
+      	echo '<p>These links will expire at '. $avail_formats[0]['expires'] .'</p>';
+      	echo '<p>The server was at IP address '. $avail_formats[0]['ip'] .' which is an '. $avail_formats[0]['ipbits'] .' bit IP address. ';
+      	echo 'Note that when 8 bit IP addresses are used, the download links may fail.</p>';
+      }
+      if ($my_type == 'Download') {
+      	echo '<p align="center">List of available formats for download:</p>
+      		<ul>';
 
-  if(($config['feature']['browserExtensions']==true)&&(is_chrome()))
-    echo '<a href="ytdl.user.js" class="userscript btn btn-mini" title="Install chrome extension to view a \'Download\' link to this application on Youtube video pages."> Install Chrome Extension </a>';
-?>
+      	/* now that we have the array, print the options */
+      	for ($i = 0; $i < count($avail_formats); $i++) {
+      		echo '<li>';
+      		echo '<span class="itag">' . $avail_formats[$i]['itag'] . '</span> ';
+      		if($config['VideoLinkMode']=='direct'||$config['VideoLinkMode']=='both'){
+      		$directlink = explode('.googlevideo.com/',$avail_formats[$i]['url']);
+      		$directlink = 'http://redirector.googlevideo.com/' . $directlink[1] . '';
+      		  echo '<a href="' . $directlink . '&title='.$cleanedtitle.'" class="mime">' . $avail_formats[$i]['type'] . '</a> ';
+      		}else{
+      		  echo '<span class="mime">' . $avail_formats[$i]['type'] . '</span> ';
+      		echo '<small>(' .  $avail_formats[$i]['quality'];}
+      		if($config['VideoLinkMode']=='proxy'||$config['VideoLinkMode']=='both')
+      			echo ' / ' . '<a href="download.php?mime=' . $avail_formats[$i]['type'] .'&title='. urlencode($my_title) .'&token='.base64_encode($avail_formats[$i]['url']) . '" class="dl">download</a>';
+      		echo ')</small> '.
+      			'<small><span class="size">' . formatBytes(get_size($avail_formats[$i]['url'])) . '</span></small>'.
+      		'</li>';
+      	}
+      	echo '</ul><small>Note that you initiate download either by clicking video format link or click "download" to use this server as proxy.</small>';
 
+        if(($config['feature']['browserExtensions']==true)&&(is_chrome()))
+          echo '<a href="ytdl.user.js" class="userscript btn btn-mini" title="Install chrome extension to view a \'Download\' link to this application on Youtube video pages."> Install Chrome Extension </a>';
+      ?>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
+
+<footer class="footer" align="center">
+    <div class="container">
+      <p class="text-muted">Rate in <a href="#"> &#9733; </a></p>
+    </div>
+</footer>
 </html>
 
 <?php
 
 } else {
-
-/* In this else, the request didn't come from a form but from something else
- * like an RSS feed.
- * As a result, we just want to return the best format, which depends on what
- * the user provided in the url.
- * If they provided "format=best" we just use the largest.
- * If they provided "format=free" we provide the best non-flash version
- * If they provided "format=ipad" we pull the best MP4 version
- *
- * Thanks to the python based youtube-dl for info on the formats
- *   							http://rg3.github.com/youtube-dl/
- */
 
 $format =  $_REQUEST['format'];
 $target_formats = '';
@@ -305,15 +264,15 @@ for ($i=0; $i < count($target_formats); $i++) {
 }
 
 //echo '<p>Out of loop, best_format is '. $best_format .'</p>';
-if( (isset($best_format)) && 
-  (isset($avail_formats[$best_format]['url'])) && 
-  (isset($avail_formats[$best_format]['type'])) 
+if( (isset($best_format)) &&
+  (isset($avail_formats[$best_format]['url'])) &&
+  (isset($avail_formats[$best_format]['type']))
   ) {
 	$redirect_url = $avail_formats[$best_format]['url'].'&title='.$cleanedtitle;
 	$content_type = $avail_formats[$best_format]['type'];
 }
 if(isset($redirect_url)) {
-	header("Location: $redirect_url"); 
+	header("Location: $redirect_url");
 }
 
 } // end of else for type not being Download
